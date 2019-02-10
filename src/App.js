@@ -9,6 +9,8 @@ import Events from './events/Events';
 import Details from './details/Details';
 import About from './about/About';
 
+import events from './data/events.json';
+
 class App extends React.Component {
   render() {
     return (
@@ -25,8 +27,8 @@ class App extends React.Component {
             </ul>
           </aside>
 
-          <Route exact path="/" component={Events} />
-          <Route path="/details/:id" component={Details} />
+          <Route exact path="/" render={(props) => <Events {...props} events={events} />} />
+          <Route path="/details/:id" render={(props) => <Details {...props} events={events} />} />
           <Route path="/about" component={About} />
         </div>
       </Router>
