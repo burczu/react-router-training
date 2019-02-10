@@ -4,12 +4,14 @@ import {
   Route,
   NavLink,
   Redirect,
+  Switch,
 } from 'react-router-dom';
 
 import Events from './events/Events';
 import Details from './details/Details';
 import About from './about/About';
 import Login from './login/Login';
+import NotFound from './notFound/NotFound';
 
 import events from './data/events.json';
 import { fakeAuth } from './fakeAuth';
@@ -30,18 +32,21 @@ class App extends React.Component {
             </ul>
           </aside>
 
-          <Route exact path="/" render={(props) => <Events {...props} events={events} />} />
-          <Route path="/details/:id" render={(props) => <Details {...props} events={events} />} />
-          <Route path="/login" component={Login}/>
-          <Route path="/about" render={(props) => {
-            if (fakeAuth.isAuthenticated) {
-              return <About {...props} />
-            }
+          <Switch>
+            <Route exact path="/" render={(props) => <Events {...props} events={events} />} />
+            <Route path="/details/:id" render={(props) => <Details {...props} events={events} />} />
+            <Route path="/login" component={Login}/>
+            <Route path="/about" render={(props) => {
+              if (fakeAuth.isAuthenticated) {
+                return <About {...props} />
+              }
 
-            return (
-              <Redirect to="/login" />
-            );
-          }} />
+              return (
+                <Redirect to="/login" />
+              );
+            }} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </Router>
     );
