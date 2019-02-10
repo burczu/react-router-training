@@ -4,7 +4,7 @@ import EventItem from './EventItem';
 import Filter from './Filter';
 import EventAdd from './EventAdd';
 
-import events from './data/events.json';
+import events from '../data/events.json';
 
 class Events extends React.Component {
   static propTypes = {
