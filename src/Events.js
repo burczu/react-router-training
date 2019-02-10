@@ -4,6 +4,8 @@ import EventItem from './EventItem';
 import Filter from './Filter';
 import EventAdd from './EventAdd';
 
+import events from './data/events.json';
+
 class Events extends React.Component {
   static propTypes = {
     events: PropTypes.array.isRequired,
@@ -25,7 +27,6 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-    const { events } = this.props;
     this.setState({
       events,
     });
