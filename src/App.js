@@ -32,6 +32,11 @@ class App extends React.Component {
             </ul>
           </aside>
 
+          {/*
+            owinięcie definicji Route'ow w komponent Switch powoduje,
+            że po napotkaniu pierwszej napotkanej (od góry) ścieżki
+            kolejne są pomijane
+          */}
           <Switch>
             <Route exact path="/" render={(props) => <Events {...props} events={events} />} />
             <Route path="/details/:id" render={(props) => <Details {...props} events={events} />} />
@@ -45,6 +50,13 @@ class App extends React.Component {
                 <Redirect to="/login" />
               );
             }} />
+
+            {/*
+              jeśli żadna z powyższych ścieżek nie pasuje, wyrenderuj poniższy komponent
+              zwróć uwagę na brak atrybutu "path" - ten komponent wyrenderowałby się
+              dla każdej ścieżki, jednak dzięki komponentowi Switch, nie wyrenderuje się
+              jeśli któraś z powyższych ścieżek pasuje
+            */}
             <Route component={NotFound} />
           </Switch>
         </div>
