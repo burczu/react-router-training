@@ -27,6 +27,17 @@ class App extends React.Component {
             </ul>
           </aside>
 
+          {/*
+            jeśli chcemy przekazać jakieś propsy do komponentów renderowanych dla danej ścieżki
+            albo chcemy renderować inne komponenty w zależności od jakiegoś warunku
+            możemy skorzystać z atrybutu "render" (a nie "component"), która przyjmuje funkcję
+            zwracającą komponent
+            ---
+            zwróć uwagę, że funkcja przypisana do atrybutu "render" przyjmuje jako parametr obiekt
+            "props" - są to propsy dodawane przez react-router (choćby te dotyczące parametrów)
+            dlatego koniecznie przekaż je wszystkie do zwracanego komponentu
+            (najłątwiej używając spread operatora)
+          */}
           <Route exact path="/" render={(props) => <Events {...props} events={events} />} />
           <Route path="/details/:id" render={(props) => <Details {...props} events={events} />} />
           <Route path="/about" component={About} />
