@@ -11,7 +11,9 @@ const EventItem = (props) => {
       Gdzie: {item.place}<br />
       Kiedy: {item.date} - {item.time}
       <button onClick={() => onDeleteItem(item.id)}>Usuń</button>
-      <Link to={'/details/' + item.id}>Szczegóły</Link>
+
+      {/* id wydarzenia przekazujemy jako parametr w adresie */}
+      <Link to={`/details/${item.id}`}>Szczegóły</Link>
     </li>
   );
 };
