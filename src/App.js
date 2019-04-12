@@ -34,10 +34,16 @@ class App extends React.Component {
           <Route path="/details/:id" render={(props) => <Details {...props} events={events} />} />
           <Route path="/login" component={Login}/>
           <Route path="/about" render={(props) => {
+            // wykorzystując atrybut "render" możemy dla danej ścieżki wyrenderować
+            // inne komponenty w zależności od jakiegoś warunku, tutaj:
+            // jeśli użytkownik jest już zalogowany, wyrenderuj komponent About
             if (fakeAuth.isAuthenticated) {
               return <About {...props} />
             }
 
+            // w przeciwnym razie wyrenderuj komponent Redirect - to taki specjalny
+            // komponent dostarczany przez react-router, pozwala na wykonanie przekierowania
+            // (w tym przypadku przekierowujemy na ścieżkę /login)
             return (
               <Redirect to="/login" />
             );
